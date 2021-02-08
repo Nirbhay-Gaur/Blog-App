@@ -6,7 +6,7 @@ var express = require("express"),
     expressSanitizer = require("express-sanitizer");
 
 // APP CONFIG
-mongoose.connect("mongodb://127.0.0.1:27017/blog_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb://localhost:27017/blog_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -110,6 +110,4 @@ app.delete("/blogs/:id", function(req, res) {
     });
 });
 
-app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("The Blog App Server is online...");
-});
+app.listen(process.env.PORT, process.env.IP);
