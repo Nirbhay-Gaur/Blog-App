@@ -1,5 +1,5 @@
 #custom-landing {
-	padding-top: 15rem;
+	padding-top: 20rem;
 }
 
 #custom-class {
@@ -37,7 +37,7 @@
 
 .date {
 	text-align: right !important;
-	margin: 1.5rem 1rem;
+	margin: 1.5rem 0rem;
 	color: rgba(0, 0, 0, 0.5);
 }
 
@@ -61,5 +61,8 @@ hr {
 	.pic {
 		height: 10rem !important;
 		object-fit: cover;
+	}
+	.date {
+		margin: 1.5rem 1rem;
 	}
 }

@@ -4,9 +4,11 @@
     <div class="ui header huge center aligned"><%= blog.title %></div>
     <div class="ui top attached">
         <div class="item">
-            <img class="ui centered rounded image" src="<%= blog.image %>">
-            <div class="content date">
-                <span>Created on - <%= blog.created.toDateString() %></span>
+            <div>
+                <img class="ui centered rounded image" src="<%= blog.image %>">
+                <div class="content date">
+                    <span>Created on - <%= blog.created.toDateString() %></span>
+                </div>
             </div>
             <div class="description">
                 <p><%- blog.body %></p>
