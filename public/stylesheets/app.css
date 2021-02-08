@@ -1,0 +1,65 @@
+#custom-landing {
+	padding-top: 15rem;
+}
+
+#custom-class {
+	margin-top: 7.0rem !important;
+	padding-bottom: 4.0rem;
+}
+
+#delete {
+	display: inline;
+}
+
+#head {
+	font-size: 5.0rem !important;
+}
+
+#headL {
+	font-size: 5.0rem !important;
+	color: #243775;
+	font-weight: 100;
+}
+
+#landingBody {
+	background: #4568dc; /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #b06ab3, #4568dc); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#b06ab3,
+		#4568dc
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.segment {
+	background-color: rgba(245, 245, 245, 0.90) !important;
+}
+
+.date {
+	text-align: right !important;
+	margin: 1.5rem 1rem;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.animation-btn,
+#hello,
+#wlcm {
+	display: none;
+}
+
+body {
+	background: url("https://thumbs.dreamstime.com/b/social-media-sketch-seamless-doodle-pattern-social-media-sketch-vector-seamless-doodle-pattern-gray-icons-white-background-174378665.jpg");
+}
+
+hr {
+	margin-top: 0;
+	border: 0;
+	height: 1px;
+	background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+@media (min-width: 768px) {
+	.pic {
+		height: 10rem !important;
+		object-fit: cover;
+	}
+}

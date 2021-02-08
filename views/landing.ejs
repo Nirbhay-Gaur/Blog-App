@@ -1,0 +1,33 @@
+<%- include("./partials/landingHeader") %>
+
+<div class="ui container main center aligned">
+    <div class="ui huge header" id="headL" >
+        <div id = "hello">Hello!</div>
+        <div id="wlcm">Welcome</div>
+    </div>
+    <span class="animation-btn">
+        <a class="ui huge violet button animated fade" href="/blogs">
+            <span class="visible content">Enter</span>
+            <span class="hidden content"><i class="sign-in icon"></i></span>
+        </a>
+    </span>
+</div>
+
+<script>
+    function fade(){
+    $("#hello").fadeIn(2000);
+    setTimeout(function(){
+        $("#hello").fadeOut(1000);
+        setTimeout(function(){
+            $("#wlcm").fadeIn(2000);
+        }, 1000);
+    },3000);
+    setTimeout(function(){
+        $(".animation-btn").fadeIn(2000);
+    }, 5500);
+    return false;
+}
+fade();
+</script>
+
+<%- include("./partials/landingFooter") %>
