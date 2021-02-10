@@ -49,6 +49,7 @@
 
 body {
 	background: url("https://thumbs.dreamstime.com/b/social-media-sketch-seamless-doodle-pattern-social-media-sketch-vector-seamless-doodle-pattern-gray-icons-white-background-174378665.jpg");
+	background-attachment: fixed;
 }
 
 hr {
