@@ -1,12 +1,17 @@
-var express = require("express"),
-    app = express(),
-    bodyParser = require("body-parser"),
-    mongoose = require("mongoose"),
-    methodOverride = require("method-override"),
-    expressSanitizer = require("express-sanitizer");
+var express           = require("express"),
+    app               = express(),
+    bodyParser        = require("body-parser"),
+    mongoose          = require("mongoose"),
+    passport          = require("passport"),
+    localStrategy     = require("passport-local"),
+    expressSession    = require("express-session"),
+    methodOverride    = require("method-override"),
+    expressSanitizer  = require("express-sanitizer"),
+    User              = require("./models/user");
 
 // APP CONFIG
-mongoose.connect("mongodb+srv://dbNirbhay:dbNirbhaygaur@cluster01.un73w.mongodb.net/Blog_app?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+// mongoose.connect("mongodb+srv://dbNirbhay:dbNirbhaygaur@cluster01.un73w.mongodb.net/Blog_app?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb://localhost:27017/blog_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -22,7 +27,23 @@ var blogSchema = new mongoose.Schema({
 });
 var Blog = mongoose.model("Blog", blogSchema);
 
+// PASSPORT CONFIG
+app.use(expressSession({
+    secret: "mnbvcxz asdfghjkl poiuytrewq",
+    resave: false,
+    saveUninitialized: false
+}));    
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // ROUTES
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 // LANDING
 app.get("/", function(req, res) {
@@ -42,12 +63,12 @@ app.get("/blogs", function(req, res) {
 });
 
 // NEW
-app.get("/blogs/new", function(req, res) {
+app.get("/blogs/new", isLoggedIn, function(req, res) {
     res.render("new");
 });
 
 // CREATE
-app.post("/blogs", function(req, res) {
+app.post("/blogs", isLoggedIn, function(req, res) {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, function(err, blog) {
         if(err) {
@@ -74,7 +95,7 @@ app.get("/blogs/:id", function(req, res) {
 });
 
 // EDIT
-app.get("/blogs/:id/edit", function(req, res) {
+app.get("/blogs/:id/edit", isLoggedIn, function(req, res) {
     Blog.findById(req.params.id, function(err, blog) {
         if(err) {
             res.redirect("/blogs");
@@ -86,7 +107,7 @@ app.get("/blogs/:id/edit", function(req, res) {
 });
 
 // UPDATE
-app.put("/blogs/:id", function(req, res) {
+app.put("/blogs/:id", isLoggedIn, function(req, res) {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, blog) {
         if(err) {
@@ -99,7 +120,7 @@ app.put("/blogs/:id", function(req, res) {
 });
 
 // DESTROY
-app.delete("/blogs/:id", function(req, res) {
+app.delete("/blogs/:id", isLoggedIn, deleteOk, function(req, res) {
     Blog.findByIdAndRemove(req.params.id, function(err) {
         if(err) {
             res.redirect("/blogs");
@@ -110,9 +131,59 @@ app.delete("/blogs/:id", function(req, res) {
     });
 });
 
-// Error Route
-app.get("*", function(req, res) {
-    res.render("error");
+// AUTH ROUTES
+
+// REGISTER
+app.get("/register", function(req, res) {
+    res.render("register");
 });
+
+app.post("/register", function(req, res) {
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user) {
+        if(err) {
+            console.log(err);
+            return res.redirect("/register");
+        }
+        passport.authenticate("local")(req, res, function() {
+            res.redirect("/blogs");
+        });
+
+    })
+});
+
+// LOGIN 
+app.get("/login", function(req, res) {
+    res.render("login");
+}); 
+
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/blogs",
+    failureRedirect: "/login"
+}));
+
+// LOGOUT
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/blogs");
+});
+
+// MIDDLEWARES
+
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login");
+}
+
+function deleteOk(req, res, next) {
+    if(req.user.username !== "mysticalBlog") {
+        res.render("notME");
+    } else {
+        next();
+    }
+}
+
 
 app.listen(process.env.PORT || 3000, process.env.IP);

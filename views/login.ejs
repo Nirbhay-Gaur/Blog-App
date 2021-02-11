@@ -1,0 +1,33 @@
+<%- include("./partials/header") %>
+
+<div class="ui container main segment text">
+    <div class="ui huge header center aligned">Log In</div>
+    <form class="ui form" action="/login" method="POST" autocomplete="off">
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input type="password" name="password" id="password" placeholder="Password">
+            </div>    
+        </div>
+        <a class="ui floated left red inverted button animated fade" href="/blogs">
+            <span class="visible content">Cancel</span>
+            <span class="hidden content"><i class="left arrow icon"></i></span>
+        </a>
+        <button class="ui floated right inverted green animated fade button">
+            <span class="visible content">Log In</span>
+            <span class="hidden content"><i class="check icon"></i></span>
+        </button>
+    </form>
+    <div class="ui warning message">
+        <strong>New to us? <a href="/register">Sign Up!</a></strong>
+    </div>
+</div>
+
+
+<%- include("./partials/footer") %>

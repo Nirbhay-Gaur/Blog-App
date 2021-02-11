@@ -15,16 +15,16 @@
 
 <script>
     function fade(){
-    $("#hello").fadeIn(2000);
+    $("#hello").fadeIn(1000);
     setTimeout(function(){
-        $("#hello").fadeOut(1000);
+        $("#hello").fadeOut(500);
         setTimeout(function(){
-            $("#wlcm").fadeIn(2000);
-        }, 1000);
-    },3000);
+            $("#wlcm").fadeIn(1000);
+        }, 500);
+    },1500);
     setTimeout(function(){
-        $(".animation-btn").fadeIn(2000);
-    }, 5500);
+        $(".animation-btn").fadeIn(1000);
+    }, 3000);
     return false;
 }
 fade();

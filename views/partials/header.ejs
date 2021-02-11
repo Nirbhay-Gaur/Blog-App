@@ -11,9 +11,18 @@
     <div class="ui inverted large fixed borderless menu">
         <div class="ui container">
             <div class="header item"><i class="code large icon"></i> BLOG</div>
-                <a href="/" class="item">Home</a>
-                <a href="/blogs" class="item">Blogs</a>
-                <a href="/blogs/new" class="item">Create Blog</a>
+            <a href="/" class="item">Home</a>
+            <a href="/blogs" class="item">Blogs</a>
+            <a href="/blogs/new" class="item">Create</a>
+            <div class="right menu">
+                <% if(!currentUser) { %>
+                <a href="/login" class="item">Log In</a>
+                <a href="/register" class="item">Sign Up</a>
+                <% } else { %>
+                <span class="item">Logged in as <%= currentUser.username %></span>
+                <a href="/logout" class="item">Log Out</a>
+                <% } %>
+            </div>
         </div>
     </div>
 </div>
