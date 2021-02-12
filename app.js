@@ -28,7 +28,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 
 // PASSPORT CONFIG
 app.use(expressSession({
-    secret: "mnbvcxz asdfghjkl poiuytrewq",
+    // secret goes here!     
     resave: false,
     saveUninitialized: false
 }));    
