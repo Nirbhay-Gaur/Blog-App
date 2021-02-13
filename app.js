@@ -21,7 +21,7 @@ app.use(methodOverride("_method"));
 
 // PASSPORT CONFIG
 app.use(expressSession({
-    secret: "mnbvcxz asdfghjkl poiuytrewq",
+    // secret goes here!     
     resave: false,
     saveUninitialized: false
 }));    
