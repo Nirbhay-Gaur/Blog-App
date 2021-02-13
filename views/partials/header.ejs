@@ -3,27 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="/stylesheets/app.css">
     <title>Blog App</title>
 </head>
 <body>
-    <div class="ui inverted large fixed borderless menu">
-        <div class="ui container">
-            <div class="header item"><i class="code large icon"></i> BLOG</div>
-            <a href="/" class="item">Home</a>
-            <a href="/blogs" class="item">Blogs</a>
-            <a href="/blogs/new" class="item">Create</a>
-            <div class="right menu">
-                <% if(!currentUser) { %>
-                <a href="/login" class="item">Log In</a>
-                <a href="/register" class="item">Sign Up</a>
-                <% } else { %>
-                <span class="item">Logged in as <%= currentUser.username %></span>
-                <a href="/logout" class="item">Log Out</a>
-                <% } %>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="container">
+            <div class="navbar-brand"><i class="code icon"></i> <strong>BLOG</strong></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blogs/new">Create</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                     <% if(!currentUser) { %>
+                        <li class="nav-item">
+                            <a href="/login" class="nav-link">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                        <a href="/register" class="nav-link">Sign Up</a>
+                        </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                        <span class="nav-link">Logged in as <%= currentUser.username %></span>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/logout" class="nav-link">Log Out</a>
+                        </li>
+                    <% } %>
+                </ul>
             </div>
         </div>
-    </div>
-</div>
-    <div id="custom-class">
+    </nav>
+
+<div id="custom-class">
+
+
+       

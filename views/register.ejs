@@ -15,15 +15,18 @@
                 <input type="password" name="password" id="password" placeholder="Password">
             </div>    
         </div>
-        <a class="ui floated left red inverted button animated fade" href="/blogs">
+        <a class="ui floated left red inverted button animated" href="/blogs">
             <span class="visible content">Cancel</span>
             <span class="hidden content"><i class="left arrow icon"></i></span>
         </a>
-        <button class="ui floated right inverted green animated fade button">
+        <button class="ui floated right inverted green animated button">
             <span class="visible content">Sign Up</span>
             <span class="hidden content"><i class="check icon"></i></span>
         </button>
     </form>
+    <div class="ui warning message">
+        <strong>Already a User? <a href="/login">Log In!</a></strong>
+    </div>
 </div>
 
 <%- include("./partials/footer") %>
