@@ -12,8 +12,7 @@ var express           = require("express"),
     blogRoute         = require("./routes/blogs");
 
 // APP CONFIG
-mongoose.connect( // Add mongodb database server here
-    , {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
