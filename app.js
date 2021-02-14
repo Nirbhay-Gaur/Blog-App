@@ -12,7 +12,8 @@ var express           = require("express"),
     blogRoute         = require("./routes/blogs");
 
 // APP CONFIG
-mongoose.connect("mongodb+srv://dbNirbhay:dbNirbhaygaur@cluster01.un73w.mongodb.net/Blog_app?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect( // Add mongodb database server here
+    , {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
