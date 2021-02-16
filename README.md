@@ -12,4 +12,4 @@ Version: 1.0.0
 * Method-Override to use PUT and DELETE.
 * Mongoose as a bridge between MongoDB and Website.
 
-## View Site - <a target="_blank" href="https://mysticalblog.herokuapp.com/">https://mysticalblog.herokuapp.com/</a>
+## View Site - https://mysticalblog.herokuapp.com/
